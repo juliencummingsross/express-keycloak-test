@@ -1,0 +1,12 @@
+{
+  "realm": "myrealm",
+  "auth-server-url": "http://localhost:8080/auth/",
+  "ssl-required": "external",
+  "resource": "express-keycloak-test",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "78bff401-4c81-4510-80fd-c07ea18eed6d"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {}
+}
