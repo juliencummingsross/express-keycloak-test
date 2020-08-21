@@ -3,8 +3,11 @@
   "auth-server-url": "http://localhost:8080/auth/",
   "ssl-required": "external",
   "resource": "express-keycloak-test",
-  "public-client": true,
   "verify-token-audience": true,
+  "credentials": {
+    "secret": "78bff401-4c81-4510-80fd-c07ea18eed6d"
+  },
   "use-resource-role-mappings": true,
-  "confidential-port": 0
+  "confidential-port": 0,
+  "policy-enforcer": {}
 }
