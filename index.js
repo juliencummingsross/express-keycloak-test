@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
   res.json("Hello World!");
 });
 
-app.get("/protected", keycloak.protect(), (req, res) => {
+app.get("/protected", keycloak.protect('myclientrole'), (req, res) => {
   res.json("Protected!");
 });
 
