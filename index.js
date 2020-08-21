@@ -2,11 +2,19 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-var session = require("express-session");
-var Keycloak = require("keycloak-connect");
+const cors = require("cors");
 
-var memoryStore = new session.MemoryStore();
-var keycloak = new Keycloak({ store: memoryStore });
+const session = require("express-session");
+const Keycloak = require("keycloak-connect");
+
+const memoryStore = new session.MemoryStore();
+const keycloak = new Keycloak({ store: memoryStore });
+
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+  })
+);
 
 app.use(
   session({
@@ -17,19 +25,14 @@ app.use(
   })
 );
 
-app.use(
-  keycloak.middleware({
-    logout: "/logout",
-    admin: "/",
-  })
-);
+app.use(keycloak.middleware());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json("Hello World!");
 });
 
 app.get("/protected", keycloak.protect(), (req, res) => {
-  res.send("Protected!");
+  res.json("Protected!");
 });
 
 app.listen(port, () => {
