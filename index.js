@@ -31,9 +31,14 @@ app.get("/", (req, res) => {
   res.json("Hello World!");
 });
 
-app.get("/protected", keycloak.protect('myclientrole'), (req, res) => {
-  res.json("Protected!");
-});
+app.get(
+  "/protected",
+  // enforcer uses resource name.
+  keycloak.enforcer("adminresource"),
+  (req, res) => {
+    res.json("Protected!");
+  }
+);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
